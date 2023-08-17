@@ -49,7 +49,7 @@ public class SToastView: UIView {
     private var direction: SToastDirection = .top
     var actionHandler:(() -> ())?
         
-    init(parentViewController: UIViewController? = nil) {
+    public init(parentViewController: UIViewController? = nil) {
         self.parentViewController = parentViewController
         super.init(frame: CGRect.zero)
     }
@@ -118,10 +118,11 @@ public class SToastView: UIView {
             toastDescriptionLabel.isHidden = true
         }
         
-        
         guard let validTopViewController = parentViewController ?? self.topViewController() else {
             return
         }
+        
+        self.parentViewController = validTopViewController
         
         addSubviewToTopViewController(viewController: validTopViewController)
         frame = CGRect(x: initialXValue, y: initialYValue, width: frame.width, height: frame.height)
