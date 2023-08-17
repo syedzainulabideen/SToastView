@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-enum SToastType {
+public enum SToastType {
     case success
     case failure
     case warning

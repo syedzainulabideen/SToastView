@@ -56,7 +56,7 @@ public class SToastView: UIView {
     
     func setup() {
         
-        backgroundColor = UIColor.black
+        backgroundColor = self.currentConfig.type.bgColor
         layer.cornerRadius = 30
         clipsToBounds = true
         
@@ -106,9 +106,13 @@ public class SToastView: UIView {
         self.actionHandler?()
     }
     
-    public func show(withMessage message: String, description: String? = nil, completion: @escaping () -> ()) {
+    public func show(withMessage message: String, description: String? = nil, configuration:ToastConfiguration = .successConfig, direction: SToastDirection = .top, completion: @escaping () -> ()) {
+        self.currentConfig = configuration
+        self.direction = direction
         self.setup()
         self.actionHandler = completion
+        self.toastImage.image = self.currentConfig.type.icon?.withRenderingMode(.alwaysTemplate)
+        self.toastImage.tintColor = .white
         
         toastLabel.text = message
         if let desciptionMessage = description {

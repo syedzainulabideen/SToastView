@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum SToastDirection {
+public enum SToastDirection {
     case top
     case bottom
 }
