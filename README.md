@@ -40,6 +40,8 @@ toast.show(withMessage: "Error Occured", description: "Somethings went wrong ple
 
 For detailed usage instructions, customization options, and more examples, refer to the *Documentation*.
 
+## **Screenshot**
+![](Screenshots/screenshot.png)
 ## **License**
 
 Swift Toast Messages is released under the **MIT License**.
