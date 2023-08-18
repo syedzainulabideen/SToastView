@@ -6,7 +6,8 @@ public class SToastView: UIView {
         let label = UILabel()
         label.textColor = .white
         label.numberOfLines = 0
-        label.font = UIFont.systemFont(ofSize: 13, weight: .regular)
+        label.font = UIFont.systemFont(ofSize: 13, weight: .bold)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -15,6 +16,7 @@ public class SToastView: UIView {
         label.textColor = .white
         label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 13, weight: .regular)
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -33,7 +35,8 @@ public class SToastView: UIView {
         button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .medium)
         button.setTitle(self.currentConfig.rightButtonText, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitleColor(.systemBlue, for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 10
         button.addTarget(self, action: #selector(self.actionButtonTapped), for: .touchUpInside)
         return button
     }()
@@ -56,7 +59,8 @@ public class SToastView: UIView {
     
     func setup() {
         
-        backgroundColor = self.currentConfig.type.bgColor
+        backgroundColor = self.currentConfig.type.bgColor.withAlphaComponent(0.9)
+        actionButton.backgroundColor = self.currentConfig.type.bgColor
         layer.cornerRadius = 30
         clipsToBounds = true
         
@@ -90,7 +94,9 @@ public class SToastView: UIView {
             labelStack.topAnchor.constraint(equalTo: topAnchor, constant: 8),
             labelStack.leadingAnchor.constraint(equalTo: self.currentConfig.type.icon == nil ? leadingAnchor : toastImage.trailingAnchor, constant: 8),
             labelStack.trailingAnchor.constraint(equalTo: self.currentConfig.rightButtonText == nil ? trailingAnchor  : actionButton.leadingAnchor, constant: -8),
-            labelStack.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8)
+            labelStack.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
+            toastLabel.widthAnchor.constraint(equalTo: labelStack.widthAnchor),
+            toastDescriptionLabel.widthAnchor.constraint(equalTo: labelStack.widthAnchor)
         ])
     }
     
